@@ -15,21 +15,27 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  userIsLoggedIn: boolean;
   public userLogs: User;
   public logs: Workout[];
   constructor(private accountService: AccountService) {
-      this.logs = this.userLogs.loggedWorkouts;
+      //this.logs = this.userLogs.loggedWorkouts;
   }
 
   getWorkOutLogs() {
-    this.accountService.getWorkoutLogs().subscribe((loggedWorkouts) => this.logs = loggedWorkouts);
-  }
-
-  
+    this.accountService.getWorkoutLogs().subscribe((data: any) =>  {
+      this.logs = data.workouts;
+      console.log(data.workouts);
+    });
+  }  
 
   ngOnInit(): void {
     console.log("reached Profile ngOnInit");
     this.getWorkOutLogs();
+
+    // this.accountService.isLogdIn().subscribe((value) => {
+    //   this.userIsLoggedIn = value;
+    // });
   }
 
 }

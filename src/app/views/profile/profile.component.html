@@ -1,12 +1,16 @@
-<h1>Wanoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooouw</h1>
-
-<body>
-    <mat-card class="program-card" fxFlex="25">
-        <mat-toolbar> Profile page </mat-toolbar>
-        <mat-list>
-            <mat-list-item *ngFor="let loggedWorkout of logs">
-                <a loggedWorkout></a>
-            </mat-list-item>
-        </mat-list>
-    </mat-card>
-</body>
+<div class="mdc-data-table">
+    <div class="mdc-data-table__table-container">
+        <table class="mdc-data-table__table">
+            <thead>
+                <tr class="mdc-data-table__header-row">
+                    <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Logged workouts:</th>
+                </tr>
+            </thead>
+            <tbody class="mdc-data-table__content">
+                <tr *ngFor="let workout of logs" class="mdc-data-table__row">
+                    <td class="mdc-data-table__cell" scope="row" >{{workout.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

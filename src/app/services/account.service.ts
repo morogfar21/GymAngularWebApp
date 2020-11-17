@@ -71,17 +71,19 @@ export class AccountService {
 
   getWorkoutLogs() {
     let apiUrl = `${environment.apiUrl}/workout/getLogs`;
-    return this.http.get<Workout[]>(apiUrl)
-    .pipe(map(token =>{
-      localStorage.setItem('token', JSON.stringify(token));
-      console.log("User: " + token);
-      return token;
-    }));
+    const token = localStorage.getItem('token');
+    console.log(token);
+    const header = new HttpHeaders()
+      .set('Authorization', `Bearer ${token}`)
+      .set('Content-Type', 'application/json')
+
+    const httpOptions = {headers: header};
+    return this.http.get<Workout[]>(apiUrl, httpOptions);
   }
 
   addWorkOutLog(workout: Workout, token: any) {
     let apiUrl = `${environment.apiUrl}/workout/addLogs`;
-    const body = JSON.stringify({ workoutToLogId: workout._id });
+    const body = JSON.stringify({ id: workout._id });
     const header = new HttpHeaders()
       .set('Authorization', `Bearer ${token}`)
       .set('Content-Type', 'application/json')

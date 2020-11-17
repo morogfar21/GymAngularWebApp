@@ -11,6 +11,7 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { CreateExerciseComponent } from './views/create-exercise/create-exercise.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import {ExercisesComponent} from './views/exercises/exercises.component';
 
 //Layout modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,7 +34,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ValidateEqualModule } from 'ng-validate-equal';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt'; 
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     CreateExerciseComponent,
     NavigationComponent,
     CreateProgramComponent,
-    ProfileComponent,
+    ExercisesComponent,
   ],
   imports: [
     ValidateEqualModule,

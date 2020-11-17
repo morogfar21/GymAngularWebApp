@@ -7,6 +7,7 @@ import { LoginComponent } from './views/login/login.component';
 import { ProgramsComponent } from './views/programs/programs.component';
 import { RegisterComponent } from './views/register/register.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { ExercisesComponent } from './views/exercises/exercises.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'create-program', component: CreateProgramComponent},
   { path: 'create-exercise', component: CreateExerciseComponent},
   { path: 'profile', component: ProfileComponent},
+  { path: 'exercises', component: ExercisesComponent}
 ];
 
 @NgModule({

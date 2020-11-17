@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { Workout, WorkOuts } from 'src/app/models/workout';
+import { Workout, WorkOuts} from 'src/app/models/workout';
 import { Exercise, Exercises } from 'src/app/models/exercise';
 import { AccountService } from 'src/app/services/account.service';
 import { ExerciseService } from 'src/app/services/exercise.service';
@@ -20,23 +20,17 @@ export class ProgramsComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
 
   userIsLoggedIn: boolean;
-  // public workOutData: BehaviorSubject<WorkOuts>;
   public workOutData: WorkOuts;
-  public exerciseData: Exercises;
-  // public exerciseData: BehaviorSubject<Exercises>;
-  displayedColumns: string[] = ['Name', 'Description', 'Sets', 'Reps'];
-  dataSoruce: any[]
   constructor(
     private accountservice: AccountService,
     private exerciseservice: ExerciseService,
     private router: Router,
   ) { }
 
-  opened(workout: Workout) {
-    console.log("Workout id: " +workout._id);
-    console.log("reached afterExpand of column");
-    this.exerciseservice.getExercises(workout._id).subscribe((results) => this.exerciseData = results);
-    this.dataSoruce = this.exerciseData.exerciseData;
+  showExercises(workout: Workout) {
+    localStorage.setItem('id', workout._id);
+
+    this.router.navigateByUrl('/exercises');
   }
 
   createExercise(workout: Workout){
@@ -44,13 +38,9 @@ export class ProgramsComponent implements OnInit {
     if(token) {
       console.log('Token was valid')
 
-      localStorage.setItem('id', workout._id);
+      localStorage.setItem('name', workout.name);
 
       this.router.navigateByUrl('/create-exercise');
-
-      // this.router.navigateByUrl('/create-exercise', { 
-      //   state: { name: workout.name , id: workout._id } 
-      // });
     } else {
         //this.router.navigateByUrl('/login');
         console.log('Token was not valid - login required')

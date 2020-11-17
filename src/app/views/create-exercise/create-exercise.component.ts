@@ -27,13 +27,7 @@ export class CreateExerciseComponent implements OnInit {
     private exerciseservice: ExerciseService,
     private router: Router,
     public activatedRoute: ActivatedRoute
-    ) {
-      //Get Workout params from programs.ts route navigation
-      // this.id = this.router.getCurrentNavigation().extras.state.id.ToString();
-      // this.workout.name = this.router.getCurrentNavigation().extras.state.name;
-    //  console.log("exercise id: " + this.router.getCurrentNavigation().extras.state.id)
-    //  console.log("exercise: " + this.router.getCurrentNavigation().extras.state.name)
-  }
+    ) {}
 
   public handleError = (control: string, error: string) => {
     return this.form.controls[control].hasError(error);
@@ -47,15 +41,15 @@ export class CreateExerciseComponent implements OnInit {
     console.log("form description: " + this.form.value.description);
     console.log("form sets: " + this.form.value.sets);
     console.log("form reps: " + this.form.value.reps);
-    let id = localStorage.getItem('id');
-    console.log("id" + id);
+    let name = localStorage.getItem('name');
+    console.log("name " + name);
     
 
     if (token){
       console.log("User can add exercise if form is valid.. Token was valid: " + token);
       if(this.form.valid) {
         console.log('Form was valid, trying to add exercise: ' + this.form.value);
-        this.exerciseservice.addExercise(this.form.value, token, id).pipe(first())
+        this.exerciseservice.addExercise(this.form.value, token, name).pipe(first())
         .subscribe({
           next: () => {
             console.log("maybe it worked")
@@ -69,7 +63,7 @@ export class CreateExerciseComponent implements OnInit {
     }
     else {
       console.log("User was not logged in, will be redirected to login.")
-      // this.router.navigateByUrl('login');
+       this.router.navigateByUrl('login');
     }
   }
 

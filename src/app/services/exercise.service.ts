@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Workout, WorkOuts } from '../models/workout';
-import { Exercise, Exercises } from '../models/exercise';
+import { Workout, WorkOuts, WorkoutWithExercise} from '../models/workout';
+import { Exercise, Exercises} from '../models/exercise';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError} from 'rxjs';
@@ -64,12 +64,12 @@ export class ExerciseService {
   }
 
   //get all exercises
-  getExercises(id: any): Observable<Exercises> {
+  getExercises(id: any): Observable<WorkoutWithExercise> {
     const apiUrl = `${environment.apiUrl}/exercise/list/?id=${id}`;
-    return this.http.get<Exercises>(apiUrl)
+    return this.http.get<WorkoutWithExercise>(apiUrl)
     .pipe(
-      catchError(this.handleError<Exercises>('getExercises'))
-      );
+      catchError(this.handleError<WorkoutWithExercise>('getExercises'))
+    )
   }
 
   updateWorkoutProgram(workoutInfo: any): Observable<any> {
@@ -83,22 +83,26 @@ export class ExerciseService {
   }
 
   //Add exercise with exercise information
-  addExercise(exercise: Exercise, token: any, id: any) {
-    const apiUrl = `${environment.apiUrl}/exercise/add/?id=${id}`; 
+  addExercise(exercise: Exercise, token: any, workoutName: any) {
+    const apiUrl = `${environment.apiUrl}/exercise/add`; 
     console.log(exercise);
+    console.log(workoutName);
     const body = JSON.stringify({
       exerciseName: exercise.name,
       descrip: exercise.description,
       sets: exercise.sets,
-      reps: exercise.reps
+      reps: exercise.reps,
+      name: workoutName
     });
+
+    console.log(body);
     const header = new HttpHeaders()
       .set('Authorization', `Bearer ${token}`)
       .set('Content-Type', 'application/json')
 
     const httpOptions = {headers: header};
     // {headers: this.header, responseType: 'json'}
-    return this.http.post<Exercise>(apiUrl , body , httpOptions)
+    return this.http.post(apiUrl , body , httpOptions)
     .pipe(
       catchError(this.handleError<any>('addWorkoutProgram'))
     );
