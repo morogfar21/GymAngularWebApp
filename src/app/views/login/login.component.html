@@ -1,0 +1,25 @@
+<body class="login-container" fxLayotAlign="center center" fxFlexFill>
+    <mat-card class="login-card" fxFlex="25">
+        <mat-toolbar>Login</mat-toolbar>
+        <form [formGroup]="form" fxLayotAlign="strech" fxLayot="column">
+            <mat-list class="login-list">
+                <mat-list-item class="login-list-item">
+                    <mat-form-field>
+                        <input matInput class="input-field" formControlName="username" name="username" type="text">
+                        <mat-placeholder class="placeholder">Username</mat-placeholder>
+                        <mat-error *ngIf="this.form.invalid">Field must be filled</mat-error>
+                    </mat-form-field>
+                </mat-list-item>
+                <mat-list-item class="login-list-item">
+                    <mat-form-field>
+                        <input matInput class="input-field" formControlName="password" name="password" type="password">
+                        <mat-placeholder class="placeholder">Password</mat-placeholder>
+                    </mat-form-field>
+                </mat-list-item>
+                <mat-list-item class="login-list-item">
+                    <button mat-raised-button (click)="login()">Login</button>
+                </mat-list-item>
+            </mat-list>
+        </form>
+    </mat-card>
+</body>

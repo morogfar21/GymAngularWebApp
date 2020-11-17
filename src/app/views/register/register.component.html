@@ -1,0 +1,39 @@
+<body class="register-container" fxLayotAlign="center center" fxFlexFill>
+    <mat-card class="register-card" fxFlex="25">
+        <mat-toolbar>Register</mat-toolbar>
+        <form [formGroup]="form" fxLayotAlign="strech" fxLayot="column">
+            <mat-list class="register-list">
+            <mat-list-item class="register-list-item">
+                <mat-form-field>
+                    <input matInput class="input-field" formControlName="username" name="username" type="text">
+                    <mat-placeholder class="placeholder">Username</mat-placeholder>
+                    <mat-error *ngIf="form.invalid">Username has to be atleast 8 characters long</mat-error>
+                </mat-form-field>
+            </mat-list-item>
+            <mat-list-item class="register-list-item">
+                <mat-form-field>
+                    <input matInput class="input-field" formControlName="password" name="password" type="password" >
+                    <mat-placeholder class="placeholder">Password</mat-placeholder>
+                    <mat-error *ngIf="form.invalid">Password has to be atleast 8 characters long</mat-error>
+                    <!-- <mat-error *ngIf="password.errors.required">Password has to be atleast 8 characters long</mat-error> -->
+                </mat-form-field>
+            </mat-list-item>
+            <mat-list-item class="register-list-item">
+                <mat-form-field>
+                    <input matInput class="input-field" formControlName="password2" name="password2"
+                        type="password">
+                        <mat-placeholder class="placeholder">Confirm Password</mat-placeholder>
+                        <mat-error *ngIf="form.invalid">Password has to be atleast 8 characters long</mat-error>
+                        <!-- <mat-error *ngIf="confirmPass.invalid">{{getErrorMessage()}}</mat-error> -->
+                        <!-- <mat-error *ngIf="form.value.password !== form.value.confirmPass || 0">Passwords must match</mat-error> -->
+                        <!-- <mat-error *ngIf="!form.errors?.passwordMatch">Passwords must match</mat-error> -->
+                        <!-- <mat-error *ngIf="form.invalid">Password has to be atleast 8 characters long</mat-error>  form.controls['name'].errors.required   -->
+                </mat-form-field>
+            </mat-list-item>
+            <mat-list-item class="register-list-item">
+                <button mat-raised-button (click)="onSubmit()">Register</button>
+            </mat-list-item>
+        </mat-list>
+        </form>
+    </mat-card>
+</body>

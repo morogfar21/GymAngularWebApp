@@ -1,0 +1,23 @@
+<body class="createProgram-container">
+    <form [formGroup]="form" (ngSubmit)="saveWorkout()">
+      <mat-card class="createProgram-card" fxFlex="25">
+        <mat-toolbar> New Workout </mat-toolbar>
+        <div>
+          <mat-form-field class="example-full-width">
+            <input matInput class="input-field" formControlName="name" type="text">
+            <mat-placeholder class="placeholder">Enter name</mat-placeholder>
+            <mat-error *ngIf="this.form.invalid">Field must be filled</mat-error>
+                <!-- <mat-error *ngIf="form.controls['name'].errors.required">  
+                    Please specify a program name
+                </mat-error> -->
+          </mat-form-field>
+        </div>
+
+        <div class="full-wrapper button-wrapper">      
+            <div class="button-wrapper">
+            <button mat-raised-button > Save</button>
+            </div>
+        </div>
+      </mat-card>
+    </form>
+</body>

@@ -1,0 +1,56 @@
+
+
+<body>
+    <h1>WorkOut Programs</h1>
+    <button mat-button color="primary" (click)="createProgram()">Add new Workout</button>
+    <div class = "outer" >
+        <mat-expansion-panel *ngFor="let workout of workOutData.workouts"  
+        (opened)="opened(workout)" 
+        #workoutPanel 
+        hideToggle 
+        (mouseenter)="workoutPanel.open()" 
+        (mouseleave)="workoutPanel.close()"
+        >
+            <mat-expansion-panel-header class="program-header">
+              <mat-panel-title>
+                Program: {{workout.name}}
+              </mat-panel-title>
+              <mat-panel-description class="program-description">
+                Hover to see exercises 
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <table mat-table [dataSource]="dataSoruce" class="mat-elevation-z8" style="width: 100%;">
+                 <!-- Name Column -->
+                <ng-container matColumnDef="Name">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+                </ng-container>
+            
+                <!-- Description Column -->
+                <ng-container matColumnDef="Description">
+                  <th mat-header-cell *matHeaderCellDef> Description </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Description}} </td>
+                </ng-container>
+            
+                <!-- Sets Column -->
+                <ng-container matColumnDef="Sets">
+                  <th mat-header-cell *matHeaderCellDef> Sets </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Sets}} </td>
+                </ng-container>
+            
+                <!-- Reps Column -->
+                <ng-container matColumnDef="Reps">
+                  <th mat-header-cell *matHeaderCellDef> Reps </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Reps}} </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-action-row>
+                <button mat-button color="primary" (click)="createExercise(workout)">Add new Exercise</button>
+                <button *ngIf="userIsLoggedIn" mat-button color="primary" (click)="addWorkoutLog(workout)">Log Workout</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </div>
+</body>

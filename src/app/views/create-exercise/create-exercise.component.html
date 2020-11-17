@@ -1,0 +1,50 @@
+<body class="createExercise-container">
+    <form [formGroup]="form" (ngSubmit)="saveExercise()" #resetform="ngForm" novalidate>
+      <mat-card class="createExercise-card" fxFlex="25">
+        <mat-toolbar> New Exercise </mat-toolbar>
+        <div>
+            <mat-list>
+                <mat-list-item class="exercise-item">
+                    <mat-form-field class="example-full-width">                 
+                        <input matInput class="input-field" formControlName="name" type="text">
+                        <mat-placeholder class="placeholder">Enter name</mat-placeholder>
+                        <mat-error *ngIf="this.form.invalid">Field must be filled</mat-error>
+                     </mat-form-field>
+                </mat-list-item>
+                <mat-list-item class="exercise-item">
+                    <mat-form-field class="example-full-width">
+                        <input matInput class="input-field" formControlName="description" type="text">
+                        <mat-placeholder class="placeholder">Enter description</mat-placeholder>
+                        <mat-error *ngIf="this.form.invalid">Field must be filled</mat-error>
+                    </mat-form-field>
+                </mat-list-item>
+                <mat-list-item class="exercise-item">
+                    <mat-form-field class="example-full-width">
+                        <input matInput class="input-field" formControlName="sets" type="number">
+                        <mat-placeholder class="placeholder">Enter sets</mat-placeholder>
+                        <mat-error *ngIf="this.form.invalid">Field must be filled</mat-error>
+                    </mat-form-field>
+                </mat-list-item>
+                <mat-list-item class="exercise-item">
+                <mat-form-field class="example-full-width">
+                    <input matInput class="input-field"  formControlName="reps" type="number">
+                    <mat-placeholder class="placeholder">Enter reps</mat-placeholder>
+                    <mat-error *ngIf="this.form.invalid">Field must be filled</mat-error>         
+                </mat-form-field>
+                </mat-list-item>
+                <mat-list-item class="exercise-item">
+                    <button mat-raised-button> Save</button>
+                </mat-list-item>
+            </mat-list>
+        </div>
+      </mat-card>
+    </form>
+</body>
+<!-- 
+
+
+<script src="" async defer></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ -->
